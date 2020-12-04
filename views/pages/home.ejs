@@ -1,0 +1,49 @@
+<link href="/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+
+<header>
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="/videos/intro.mp4" type="video/mp4">
+    </video>
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1 class="display-3"><img src="https://www.gran-turismo.com/gtsport/decal/5125101880501896704_1.png"
+                        width="500"></h1>
+                <p class="lead mb-0">Scroll down for more</p>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container h-100 mt-5">
+        <%- include('../partials/header'); %>
+        <div class="row align-items-center h-100">
+            <% for(var i=0; i < rows.length; i++) { %>
+            <div class="col-4 mx-auto">
+
+                <div class="card mx-auto text-white bg-dark mb-3" style="width: 22rem;">
+
+                    <img class="card-img-top" src=<%= rows[i].Vehicle_Image%> alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= rows[i].Vehicle_Name %></h5>
+                        <p class="card-text">Price: <%= rows[i].Price %></p>
+                        <a href="carinfo?name=<%= rows[i].Vehicle_Name %>" class="btn btn-primary">More info</a>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <% } %>
+        </div>
+    </div>
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+
+</html>
