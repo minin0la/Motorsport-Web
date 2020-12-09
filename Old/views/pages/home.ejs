@@ -19,26 +19,23 @@
 <main>
     <div class="container h-100 mt-5">
         <%- include('../partials/header'); %>
-        <div class="row align-items-center h-100">
+        <div class="container h-100">
             <% for(var i=0; i < rows.length; i++) { %>
-            <div class="col-4 mx-auto">
-
+            <div class="card-deck">
+                <% for(var y=0; y < 3; y++) { %>
                 <div class="card mx-auto text-white bg-dark mb-3" style="width: 22rem;">
-
                     <img class="card-img-top" src=<%= rows[i].Vehicle_Image%> alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"><%= rows[i].Vehicle_Name %></h5>
                         <p class="card-text">Price: <%= rows[i].Price %></p>
                         <a href="carinfo?name=<%= rows[i].Vehicle_Name %>" class="btn btn-primary">More info</a>
                     </div>
-
-
                 </div>
-
+                <% i++ %>
+                <% } %>
             </div>
             <% } %>
         </div>
-    </div>
 </main>
 <footer>
     <%- include('../partials/footer'); %>
