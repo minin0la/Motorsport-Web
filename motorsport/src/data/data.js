@@ -558,7 +558,7 @@ export const data = [
     price: 84500,
     types: "Van",
     brand: "Declasse",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/BrYhGdM.png",
     brand_image:
@@ -577,7 +577,7 @@ export const data = [
     price: 84500,
     types: "Van",
     brand: "Declasse",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/PsS6VPJ.png",
     brand_image:
@@ -596,7 +596,7 @@ export const data = [
     price: 84500,
     types: "Van",
     brand: "Declasse",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/QAcWikg.png",
     brand_image:
@@ -994,7 +994,7 @@ export const data = [
     price: 312000,
     types: "Off Road",
     brand: "Canis",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/K9J5X1i.png",
     brand_image:
@@ -1033,7 +1033,7 @@ export const data = [
     price: 357500,
     types: "Off Road",
     brand: "Annis",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/Ho74Myp.png",
     brand_image:
@@ -1052,7 +1052,7 @@ export const data = [
     price: 357500,
     types: "Off Road",
     brand: "Vapid",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/Sie6vVB.png",
     brand_image:
@@ -1071,7 +1071,7 @@ export const data = [
     price: 455000,
     types: "Off Road",
     brand: "Canis",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/cNddPsP.png",
     brand_image:
@@ -1090,7 +1090,7 @@ export const data = [
     price: 455000,
     types: "SUV",
     brand: "Lampadati",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/rzvEDKK.png",
     brand_image:
@@ -2048,7 +2048,7 @@ export const data = [
     price: 52000,
     types: "Coupes",
     brand: "Ocelot",
-    capacity: "4 (Driver and three passengers)",
+    capacity: "4",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/tKW71Ph.jpg",
     brand_image:
@@ -2187,7 +2187,7 @@ export const data = [
     price: 65000,
     types: "Muscle",
     brand: "Declasse",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/7waRDd3.png",
     brand_image:
@@ -2206,7 +2206,7 @@ export const data = [
     price: 65000,
     types: "Muscle",
     brand: "Declasse",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/wOHkpwd.png",
     brand_image:
@@ -2225,7 +2225,7 @@ export const data = [
     price: 78000,
     types: "Muscle",
     brand: "Schyster",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/9srOJ2u.png",
     brand_image:
@@ -2282,7 +2282,7 @@ export const data = [
     price: 97500,
     types: "Muscle",
     brand: "Declasse",
-    capacity: "4 (driver and 3 passengers)",
+    capacity: "4",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/Oe0gix8.png",
     brand_image:
@@ -2301,7 +2301,7 @@ export const data = [
     price: 104000,
     types: "Muscle",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/YSOVmjv.png",
     brand_image:
@@ -2378,7 +2378,7 @@ export const data = [
     price: 153000,
     types: "Boats",
     brand: "Nagasaki",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "N/A",
     vehicle_image: "https://i.imgur.com/Uxrwlcx.png",
     brand_image:
@@ -2456,7 +2456,7 @@ export const data = [
     price: 195000,
     types: "Muscle",
     brand: "Bravado",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/VRLmTf2.png",
     brand_image:
@@ -2495,7 +2495,7 @@ export const data = [
     price: 210000,
     types: "Boats",
     brand: "Speedophile",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "N/A",
     vehicle_image: "https://i.imgur.com/XTOf0y1.png",
     brand_image:
@@ -2554,7 +2554,7 @@ export const data = [
     price: 325000,
     types: "Muscle",
     brand: "Bravado",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/wu2jPb2.png",
     brand_image:
@@ -2573,7 +2573,7 @@ export const data = [
     price: 325000,
     types: "Muscle",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/C35FSlr.png",
     brand_image:
@@ -2592,7 +2592,7 @@ export const data = [
     price: 325000,
     types: "Muscle",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/IcHnrii.png",
     brand_image:
@@ -2611,7 +2611,7 @@ export const data = [
     price: 325000,
     types: "Muscle",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/YyNXIMl.png",
     brand_image:
@@ -2630,7 +2630,7 @@ export const data = [
     price: 770000,
     types: "Boats",
     brand: "Dinka",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "N/A",
     vehicle_image: "https://i.imgur.com/FQjP20a.png",
     brand_image:
@@ -2688,7 +2688,7 @@ export const data = [
     price: 39000,
     types: "Sports(Classic)",
     brand: "Weeny",
-    capacity: "4 (driver and three passenger)",
+    capacity: "4",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/WjhyEaA.png",
     brand_image:
@@ -2707,7 +2707,7 @@ export const data = [
     price: 52000,
     types: "Sports(Classic)",
     brand: "Vulcar",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/xm9Sjse.png",
     brand_image:
@@ -2726,7 +2726,7 @@ export const data = [
     price: 58500,
     types: "Sports(Classic)",
     brand: "Vulcar",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/w1Nz6YG.png",
     brand_image:
@@ -3025,7 +3025,7 @@ export const data = [
     price: 260000,
     types: "Sports(Classic)",
     brand: "Übermacht",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/GqTRcQJ.png",
     brand_image:
@@ -3044,7 +3044,7 @@ export const data = [
     price: 273000,
     types: "Sports(Classic)",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/BEEf7Z2.png",
     brand_image:
@@ -3083,7 +3083,7 @@ export const data = [
     price: 286000,
     types: "Sports(Classic)",
     brand: "Lampadati",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/xTh4aTs.png",
     brand_image:
@@ -3122,7 +3122,7 @@ export const data = [
     price: 325000,
     types: "Sports(Classic)",
     brand: "Karin",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/qj0eAGt.png",
     brand_image:
@@ -3161,7 +3161,7 @@ export const data = [
     price: 390000,
     types: "Sports(Classic)",
     brand: "Grotti",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/EH8nghq.png",
     brand_image:
@@ -3180,7 +3180,7 @@ export const data = [
     price: 455000,
     types: "Sports(Classic)",
     brand: "Ocelot",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/BlCGT7w.png",
     brand_image:
@@ -4098,7 +4098,7 @@ export const data = [
     price: 117000,
     types: "Motorcycle",
     brand: "Western Motorcycle Company",
-    capacity: "2 (rider and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/zRiLd3f.png",
     brand_image:
@@ -4117,7 +4117,7 @@ export const data = [
     price: 123500,
     types: "Motorcycle",
     brand: "Western Motorcycle Company",
-    capacity: "2 (rider and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/NPIZl54.png",
     brand_image:
@@ -4316,7 +4316,7 @@ export const data = [
     price: 195000,
     types: "Sports",
     brand: "Obey",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/y77FqQL.png",
     brand_image:
@@ -4495,7 +4495,7 @@ export const data = [
     price: 260000,
     types: "Sports",
     brand: "Benefactor",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/YERQBkZ.png",
     brand_image:
@@ -4694,7 +4694,7 @@ export const data = [
     price: 357500,
     types: "Sports",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/dt9Uvs4.png",
     brand_image:
@@ -4854,7 +4854,7 @@ export const data = [
     price: 455000,
     types: "Sports",
     brand: "Ocelot",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/ttsNcPk.png",
     brand_image:
@@ -4893,7 +4893,7 @@ export const data = [
     price: 520000,
     types: "Sports",
     brand: "Vapid",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/h65Jd07.png",
     brand_image:
@@ -4932,7 +4932,7 @@ export const data = [
     price: 585000,
     types: "Sports",
     brand: "Dinka",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/v1PLDQQ.png",
     brand_image:
@@ -4971,7 +4971,7 @@ export const data = [
     price: 650000,
     types: "Sports",
     brand: "Obey",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/xzBp8qC.png",
     brand_image:
@@ -5130,7 +5130,7 @@ export const data = [
     price: 715000,
     types: "Sports",
     brand: "Enus",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/hXC5qiP.png",
     brand_image:
@@ -5309,7 +5309,7 @@ export const data = [
     price: 780000,
     types: "Sports",
     brand: "Benefactor",
-    capacity: "2 (driver and passenger)",
+    capacity: "2",
     drive: "RWD",
     vehicle_image: "https://i.imgur.com/YWwGN7o.png",
     brand_image:
@@ -5448,7 +5448,7 @@ export const data = [
     price: 1000000,
     types: "Sports",
     brand: "Pfister",
-    capacity: "4 (driver and three passengers)",
+    capacity: "4",
     drive: "AWD",
     vehicle_image: "https://i.imgur.com/7rZBrOo.png",
     brand_image:

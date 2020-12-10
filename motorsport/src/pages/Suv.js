@@ -5,14 +5,8 @@ import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 
 function ControlledCarousel() {
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel className="mb-5">
       <Carousel.Item>
         <img className="d-block w-100" src="/images/dubsta.jpg" alt="" />
         <Carousel.Caption></Carousel.Caption>
@@ -29,16 +23,34 @@ function ControlledCarousel() {
   );
 }
 
-function DisplayCar() {
+const DisplayCar = () => {
   const [carlist, setSort] = useState(
-    data.filter((content) => content.types === "SUV").sort((a, b) => {})
+    data
+      .filter((x) => x.types === "SUV")
+      .sort((a, b) => (a.name > b.name ? 1 : -1))
   );
 
+  const SortByPrice = (condition) => {
+    let sorted = data.filter((x) => x.types === "SUV");
+    if (condition === "PriceAscending") {
+      sorted.sort((a, b) => (a.price > b.price ? 1 : -1));
+    }
+    if (condition === "PriceDescending") {
+      sorted.sort((a, b) => (a.price < b.price ? 1 : -1));
+    }
+    if (condition === "NameAscending") {
+      sorted.sort((a, b) => (a.name > b.name ? 1 : -1));
+    }
+    if (condition === "NameDescending") {
+      sorted.sort((a, b) => (a.name < b.name ? 1 : -1));
+    }
+    setSort(sorted);
+  };
   const TheRender = () => {
     var rows = carlist
-      .map((content) => {
+      .map((content, index) => {
         return (
-          <Card>
+          <Card key={index}>
             <Card.Img variant="top" src={content.vehicle_image} />
             <Card.Body>
               <Card.Title>{content.name}</Card.Title>
@@ -52,13 +64,54 @@ function DisplayCar() {
         r[r.length - 1].push(element);
         return r;
       }, [])
-      .map((rowContent) => {
-        return <CardDeck className="mt-5">{rowContent}</CardDeck>;
+      .map((rowContent, index) => {
+        return (
+          <CardDeck key={index} className="mt-5">
+            {rowContent}
+          </CardDeck>
+        );
       });
     return <div className="container">{rows}</div>;
   };
-  return <TheRender />;
-}
+  return (
+    <>
+      <div className="row justify-content-center">
+        <div className="btn-group">
+          <button
+            className="btn-primary btn "
+            type="button"
+            onClick={() => SortByPrice("PriceAscending")}
+          >
+            Sort By Price (Ascending)
+          </button>
+          <button
+            className="btn-danger btn "
+            type="button"
+            onClick={() => SortByPrice("PriceDescending")}
+          >
+            Sort By Price (Descending)
+          </button>
+          <button
+            className="btn-primary btn"
+            type="button"
+            onClick={() => SortByPrice("NameAscending")}
+          >
+            Sort By Name (Ascending)
+          </button>
+          <button
+            className="btn-danger btn"
+            type="button"
+            onClick={() => SortByPrice("NameDescending")}
+          >
+            Sort By Name (Descending)
+          </button>
+        </div>
+      </div>
+      <TheRender />
+    </>
+  );
+};
+
 function Suv() {
   return (
     <>
