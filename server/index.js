@@ -67,13 +67,9 @@ app.get("/mysql", (req, res) => {
 
 app.get("/getstocks", (req, res) => {
   var axios = require("axios");
-  var data =
-    '{"username":' +
-    process.env.ecrp_user +
-    ',"password":' +
-    process.env.ecrp_password +
-    "}";
+  var data = `{"username":"${process.env.ECRP_USER}","password":"${process.env.ECRP_PASSWORD}"}`;
   var token = "";
+  // res.send(data);
 
   var config = {
     method: "post",
