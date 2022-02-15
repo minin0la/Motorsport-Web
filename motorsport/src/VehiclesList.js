@@ -14,6 +14,11 @@ import {
   ThemeProvider,
   CssBaseline,
   Container,
+  Badge,
+  CardHeader,
+  IconButton,
+  CardActions,
+  Button,
 } from "@mui/material";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
@@ -22,6 +27,9 @@ import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import LoadingPage from "./LoadingPage";
+// import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import GarageIcon from "@mui/icons-material/Garage";
+import CallIcon from "@mui/icons-material/Call";
 
 function VehiclesList() {
   const [loading, setLoading] = useState(true);
@@ -37,27 +45,48 @@ function VehiclesList() {
 
   useEffect(() => {
     const getVehicles = async () => {
-      const data = await getDocs(vehiclesCollectionRef);
+      // const data = await getDocs(vehiclesCollectionRef);
 
-      setVehicles(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setFilteredVehicles(
-        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-      setLoading(false);
+      // setVehicles(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      // setFilteredVehicles(
+      //   data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      // );
+
+      const axios = require("axios");
+
+      axios
+        .get("http://localhost:9000/mysql")
+        .then((res) => {
+          setVehicles(res.data);
+          setFilteredVehicles(res.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     };
     getVehicles();
   }, []);
 
   const [state, setState] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
+  const [query, setQuery] = useState("");
 
   const handleSearch = (event) => {
-    if (event.target.value.length === 0) {
-      setSearchText("");
-    } else {
+    // if (event.target.value.length === 0) {
+    //   setSearchText("");
+    // } else {
+    if (event.key === "Enter") {
       setSearchText(event.target.value);
     }
+
+    // }
   };
+  // useEffect(() => {
+  //   const timeOutId = setTimeout(() => setSearchText(query), 1000);
+  //   return () => clearTimeout(timeOutId);
+  // }, [query]);
+
   const handleChange = (event) => {
     if (event.target.checked) {
       setState([...state, event.target.value]);
@@ -65,13 +94,16 @@ function VehiclesList() {
       setState(state.filter((id) => id !== event.target.value));
     }
   };
+
   useEffect(() => {
     if (state.length === 0 && searchText.length === 0) {
       setFilteredVehicles(vehicles);
     } else if (searchText.length === 0 && state.length !== 0) {
       setFilteredVehicles(
         vehicles.filter((vehicle) =>
-          state.some((type) => [vehicle.type].flat().includes(type))
+          state.some((type) =>
+            [vehicle.type.toLowerCase()].flat().includes(type.toLowerCase())
+          )
         )
       );
     } else if (searchText.length !== 0 && state.length === 0) {
@@ -87,7 +119,9 @@ function VehiclesList() {
       setFilteredVehicles(
         vehicles
           .filter((vehicle) =>
-            state.some((type) => [vehicle.type].flat().includes(type))
+            state.some((type) =>
+              [vehicle.type.toLowerCase()].flat().includes(type.toLowerCase())
+            )
           )
           .filter((vehicle) =>
             vehicle.name
@@ -121,9 +155,11 @@ function VehiclesList() {
               >
                 <TextField
                   id="standard-basic"
-                  label="Search"
+                  label="Search (Enter)"
                   variant="standard"
-                  onChange={handleSearch}
+                  // value={query}
+                  // onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={handleSearch}
                 />
                 <FormLabel component="legend">Filter</FormLabel>
                 <FormGroup>
@@ -133,7 +169,7 @@ function VehiclesList() {
                         // checked={sports}
                         onChange={handleChange}
                         name="sports"
-                        value="Sports"
+                        value="SPORTS"
                       />
                     }
                     label="Sports"
@@ -141,21 +177,19 @@ function VehiclesList() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        // checked={SUV}
                         onChange={handleChange}
-                        name="SUV"
-                        value="SUV"
+                        name="SUVs"
+                        value="SUVS"
                       />
                     }
-                    label="SUV"
+                    label="SUVs"
                   />
                   <FormControlLabel
                     control={
                       <Checkbox
-                        // checked={SUV}
                         onChange={handleChange}
                         name="Off Road"
-                        value="Off Road"
+                        value="OFF_ROAD"
                       />
                     }
                     label="Off Road"
@@ -166,7 +200,7 @@ function VehiclesList() {
                         // checked={SUV}
                         onChange={handleChange}
                         name="Motorcycle"
-                        value="Motorcycle"
+                        value="MOTORCYCLES"
                       />
                     }
                     label="Motorcycle"
@@ -177,7 +211,7 @@ function VehiclesList() {
                         // checked={SUV}
                         onChange={handleChange}
                         name="Muscle"
-                        value="Muscle"
+                        value="MUSCLE"
                       />
                     }
                     label="Muscle"
@@ -187,8 +221,8 @@ function VehiclesList() {
                       <Checkbox
                         // checked={SUV}
                         onChange={handleChange}
-                        name="Sports(Classic)"
-                        value="Sports(Classic)"
+                        name="Sports (Classic)"
+                        value="SPORTS_CLASSIC"
                       />
                     }
                     label="Sports (Classic)"
@@ -199,7 +233,7 @@ function VehiclesList() {
                         // checked={SUV}
                         onChange={handleChange}
                         name="Sedans"
-                        value="Sedans"
+                        value="SEDANS"
                       />
                     }
                     label="Sedans"
@@ -210,7 +244,7 @@ function VehiclesList() {
                         // checked={SUV}
                         onChange={handleChange}
                         name="Compacts"
-                        value="Compacts"
+                        value="COMPACTS"
                       />
                     }
                     label="Compacts"
@@ -222,23 +256,48 @@ function VehiclesList() {
             <Grid item xs={8}>
               <Grid container spacing={4}>
                 {filteredVehicles.map((item) => (
-                  <Grid item xs={12} sm={6} md={4} key={item.name}>
+                  <Grid item xs={12} sm={6} md={4} key={item.id}>
+                    {/* <Badge color="secondary" badgeContent=" "> */}
                     <Card>
                       <CardMedia
                         component="img"
                         height="100%"
-                        image={item.veh_img}
+                        image={item.vehicle_image}
                         // alt="green iguana"
                       />
+
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                           {item.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          ${item.price.toLocaleString()}
+                          ${item.actual_price.toLocaleString()}
                         </Typography>
                       </CardContent>
+                      <CardActions>
+                        {/* <Button size="small">Share</Button> */}
+                        {item.stock > 1 ? (
+                          <Button
+                            // size="small"
+                            variant="contained"
+                            color="success"
+                            startIcon={<GarageIcon />}
+                          >
+                            In Stock
+                          </Button>
+                        ) : (
+                          <Button
+                            // size="small"
+                            variant="outlined"
+                            color="error"
+                            startIcon={<CallIcon />}
+                          >
+                            Order
+                          </Button>
+                        )}
+                      </CardActions>
                     </Card>
+                    {/* </Badge> */}
                   </Grid>
                 ))}
               </Grid>
