@@ -55,7 +55,7 @@ function VehiclesList() {
       const axios = require("axios");
 
       axios
-        .get("http://localhost:9000/mysql")
+        .get("https://pdm-ecrp.herokuapp.com/mysql")
         .then((res) => {
           setVehicles(res.data);
           setFilteredVehicles(res.data);
