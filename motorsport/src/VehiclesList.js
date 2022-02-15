@@ -28,7 +28,7 @@ import CallIcon from "@mui/icons-material/Call";
 
 function VehiclesList() {
   const [loading, setLoading] = useState(true);
-
+  const [rawVehicles, setRawVehicles] = useState()
   const [vehicles, setVehicles] = useState([]);
   const vehiclesCollectionRef = collection(db, "vehicles");
   const [filteredVehicles, setFilteredVehicles] = useState([]);
@@ -67,6 +67,7 @@ function VehiclesList() {
   const [state, setState] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
   const [query, setQuery] = useState("");
+
 
   const handleSearch = (event) => {
     // if (event.target.value.length === 0) {
@@ -255,6 +256,7 @@ function VehiclesList() {
                 </FormControl>
               </div>
             </Grid>
+
             <Grid
               container
               item
