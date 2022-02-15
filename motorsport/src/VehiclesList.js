@@ -146,7 +146,11 @@ function VehiclesList() {
           >
             <img src="https://i.imgur.com/TEq0FlR.png" />
           </Container>
-          <Grid container spacing={4}>
+          <Grid
+            container
+            spacing={4}
+            sx={{ flexDirection: { xs: "column", md: "row" } }}
+          >
             <Grid item xs={3}>
               <FormControl
                 sx={{ m: 3 }}
