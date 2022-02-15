@@ -15,17 +15,16 @@ import {
   CssBaseline,
   Container,
 } from "@mui/material";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
 import * as React from "react";
 import { db } from "./firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import LoadingPage from "./LoadingPage";
+import axios from "axios";
 
 function VehiclesList() {
   const [loading, setLoading] = useState(true);
-
+  const [rawVehicles, setRawVehicles] = useState()
   const [vehicles, setVehicles] = useState([]);
   const vehiclesCollectionRef = collection(db, "vehicles");
   const [filteredVehicles, setFilteredVehicles] = useState([]);
@@ -36,21 +35,28 @@ function VehiclesList() {
   });
 
   useEffect(() => {
-    const getVehicles = async () => {
-      const data = await getDocs(vehiclesCollectionRef);
+    // const getVehicles = async () => {
+    //   const data = await getDocs(vehiclesCollectionRef);
 
-      setVehicles(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setFilteredVehicles(
-        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-      setLoading(false);
-    };
+    //   setVehicles(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //   setFilteredVehicles(vehicles);
+    //   setLoading(false);
+    // };
+    const getVehicles = () => {
+      axios.get("http://localhost:9000/getstocks").then(response => {
+        setVehicles(response.data.map((doc)=>({...doc.v})))
+        setFilteredVehicles(vehicles);
+        setLoading(false);
+      })
+    }
     getVehicles();
   }, []);
 
   const [state, setState] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
+  const changeFilter = () => {
 
+  }
   const handleSearch = (event) => {
     if (event.target.value.length === 0) {
       setSearchText("");
@@ -228,7 +234,7 @@ function VehiclesList() {
                         component="img"
                         height="100%"
                         image={item.veh_img}
-                        // alt="green iguana"
+                      // alt="green iguana"
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
