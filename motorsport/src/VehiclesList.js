@@ -51,6 +51,7 @@ function VehiclesList() {
 
       axios
         .get("https://pdm-ecrp.herokuapp.com/mysql")
+        // .get("http://localhost:9000/mysql")
         .then((res) => {
           setVehicles(res.data);
           setFilteredVehicles(res.data);
@@ -145,162 +146,170 @@ function VehiclesList() {
             container
             spacing={4}
             sx={{ flexDirection: { xs: "column", md: "row" } }}
-            alignItems="center"
           >
-            <Grid item xs={3}>
-              <FormControl
-                sx={{ m: 3 }}
-                component="fieldset"
-                variant="standard"
-              >
-                <TextField
-                  id="standard-basic"
-                  label="Search (Enter)"
+            <Grid container item xs={12} md={3} justifyContent="center">
+              <div>
+                <FormControl
+                  sx={{ m: 3 }}
+                  component="fieldset"
                   variant="standard"
-                  // value={query}
-                  // onChange={(event) => setQuery(event.target.value)}
-                  onKeyDown={handleSearch}
-                />
-                <FormLabel component="legend">Filter</FormLabel>
-                <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        // checked={sports}
-                        onChange={handleChange}
-                        name="sports"
-                        value="SPORTS"
-                      />
-                    }
-                    label="Sports"
+                >
+                  <TextField
+                    id="standard-basic"
+                    label="Search (Enter)"
+                    variant="standard"
+                    // value={query}
+                    // onChange={(event) => setQuery(event.target.value)}
+                    onKeyDown={handleSearch}
                   />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={handleChange}
-                        name="SUVs"
-                        value="SUVS"
-                      />
-                    }
-                    label="SUVs"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={handleChange}
-                        name="Off Road"
-                        value="OFF_ROAD"
-                      />
-                    }
-                    label="Off Road"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        // checked={SUV}
-                        onChange={handleChange}
-                        name="Motorcycle"
-                        value="MOTORCYCLES"
-                      />
-                    }
-                    label="Motorcycle"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        // checked={SUV}
-                        onChange={handleChange}
-                        name="Muscle"
-                        value="MUSCLE"
-                      />
-                    }
-                    label="Muscle"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        // checked={SUV}
-                        onChange={handleChange}
-                        name="Sports (Classic)"
-                        value="SPORTS_CLASSIC"
-                      />
-                    }
-                    label="Sports (Classic)"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        // checked={SUV}
-                        onChange={handleChange}
-                        name="Sedans"
-                        value="SEDANS"
-                      />
-                    }
-                    label="Sedans"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        // checked={SUV}
-                        onChange={handleChange}
-                        name="Compacts"
-                        value="COMPACTS"
-                      />
-                    }
-                    label="Compacts"
-                  />
-                </FormGroup>
-                {/* <FormHelperText>Be careful</FormHelperText> */}
-              </FormControl>
+                  <FormLabel component="legend">Filter</FormLabel>
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          // checked={sports}
+                          onChange={handleChange}
+                          name="sports"
+                          value="SPORTS"
+                        />
+                      }
+                      label="Sports"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          onChange={handleChange}
+                          name="SUVs"
+                          value="SUVS"
+                        />
+                      }
+                      label="SUVs"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          onChange={handleChange}
+                          name="Off Road"
+                          value="OFF_ROAD"
+                        />
+                      }
+                      label="Off Road"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          // checked={SUV}
+                          onChange={handleChange}
+                          name="Motorcycle"
+                          value="MOTORCYCLES"
+                        />
+                      }
+                      label="Motorcycle"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          // checked={SUV}
+                          onChange={handleChange}
+                          name="Muscle"
+                          value="MUSCLE"
+                        />
+                      }
+                      label="Muscle"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          // checked={SUV}
+                          onChange={handleChange}
+                          name="Sports (Classic)"
+                          value="SPORTS_CLASSIC"
+                        />
+                      }
+                      label="Sports (Classic)"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          // checked={SUV}
+                          onChange={handleChange}
+                          name="Sedans"
+                          value="SEDANS"
+                        />
+                      }
+                      label="Sedans"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          // checked={SUV}
+                          onChange={handleChange}
+                          name="Compacts"
+                          value="COMPACTS"
+                        />
+                      }
+                      label="Compacts"
+                    />
+                  </FormGroup>
+                  {/* <FormHelperText>Be careful</FormHelperText> */}
+                </FormControl>
+              </div>
             </Grid>
-            <Grid item xs={8}>
-              <Grid container spacing={4}>
-                {filteredVehicles.map((item) => (
-                  <Grid item xs={12} sm={6} md={4} key={item.id}>
-                    {/* <Badge color="secondary" badgeContent=" "> */}
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        height="100%"
-                        image={item.vehicle_image}
-                        // alt="green iguana"
-                      />
+            <Grid
+              container
+              item
+              xs={12}
+              sm={12}
+              // sm={10}
+              md={8}
+              spacing={4}
+              justifyContent="center"
+            >
+              {filteredVehicles.map((item) => (
+                <Grid item xs={10} sm={5} md={4} key={item.id}>
+                  {/* <Badge color="secondary" badgeContent=" "> */}
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="100%"
+                      image={item.vehicle_image}
+                      // alt="green iguana"
+                    />
 
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {item.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          ${item.actual_price.toLocaleString()}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        {/* <Button size="small">Share</Button> */}
-                        {item.stock > 1 ? (
-                          <Button
-                            // size="small"
-                            variant="contained"
-                            color="success"
-                            startIcon={<GarageIcon />}
-                          >
-                            In Stock
-                          </Button>
-                        ) : (
-                          <Button
-                            // size="small"
-                            variant="outlined"
-                            color="error"
-                            startIcon={<CallIcon />}
-                          >
-                            Order
-                          </Button>
-                        )}
-                      </CardActions>
-                    </Card>
-                    {/* </Badge> */}
-                  </Grid>
-                ))}
-              </Grid>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        ${item.actual_price.toLocaleString()}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      {/* <Button size="small">Share</Button> */}
+                      {item.stock > 1 ? (
+                        <Button
+                          // size="small"
+                          variant="contained"
+                          color="success"
+                          startIcon={<GarageIcon />}
+                        >
+                          In Stock
+                        </Button>
+                      ) : (
+                        <Button
+                          // size="small"
+                          variant="outlined"
+                          color="error"
+                          startIcon={<CallIcon />}
+                        >
+                          Order
+                        </Button>
+                      )}
+                    </CardActions>
+                  </Card>
+                  {/* </Badge> */}
+                </Grid>
+              ))}
             </Grid>
           </Grid>
         </ThemeProvider>
