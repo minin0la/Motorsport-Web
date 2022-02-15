@@ -14,17 +14,12 @@ import {
   ThemeProvider,
   CssBaseline,
   Container,
-  Badge,
-  CardHeader,
-  IconButton,
   CardActions,
   Button,
 } from "@mui/material";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
 import * as React from "react";
 import { db } from "./firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import LoadingPage from "./LoadingPage";
 // import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -150,6 +145,7 @@ function VehiclesList() {
             container
             spacing={4}
             sx={{ flexDirection: { xs: "column", md: "row" } }}
+            alignItems="center"
           >
             <Grid item xs={3}>
               <FormControl
