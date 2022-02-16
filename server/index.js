@@ -70,7 +70,7 @@ app.get("/mysql", (req, res) => {
 
 
 
-cron.schedule("* * * * *", () => {
+cron.schedule("*/10 * * * *", () => {
   var data = `{"username":"${process.env.ECRP_USER}","password":"${process.env.ECRP_PASSWORD}"}`;
   var token = "";
   var stocks;
