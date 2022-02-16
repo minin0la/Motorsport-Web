@@ -19,6 +19,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Stack,
+  Pagination,
 } from "@mui/material";
 import * as React from "react";
 import { db } from "./firebase-config";
@@ -36,6 +38,9 @@ function VehiclesList() {
   const [vehicles, setVehicles] = useState([]);
   const vehiclesCollectionRef = collection(db, "vehicles");
   const [filteredVehicles, setFilteredVehicles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [vehiclesPerPage, setvehiclesPerPage] = useState(6);
+
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -68,24 +73,20 @@ function VehiclesList() {
     getVehicles();
   }, []);
 
+  const indexOfLastVehicles = currentPage * vehiclesPerPage;
+  const indexOfFirstVehicles = indexOfLastVehicles - vehiclesPerPage;
+  const currentVehicles = filteredVehicles.slice(
+    indexOfFirstVehicles,
+    indexOfLastVehicles
+  );
+
   const [state, setState] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
   const [query, setQuery] = useState("");
 
   const handleSearch = (event) => {
-    // if (event.target.value.length === 0) {
-    //   setSearchText("");
-    // } else {
-    if (event.key === "Enter") {
-      setSearchText(event.target.value);
-    }
-
-    // }
+    setSearchText(event.target.value);
   };
-  // useEffect(() => {
-  //   const timeOutId = setTimeout(() => setSearchText(query), 1000);
-  //   return () => clearTimeout(timeOutId);
-  // }, [query]);
 
   const handleChange = (event) => {
     if (event.target.checked) {
@@ -282,7 +283,6 @@ function VehiclesList() {
                 </FormControl>
               </Grid>
             </Grid>
-
             <Grid
               container
               item
@@ -291,53 +291,73 @@ function VehiclesList() {
               // sm={10}
               md={8}
               spacing={4}
+              alignContent="center"
               justifyContent="center"
             >
-              {filteredVehicles.map((item) => (
-                <Grid item xs={10} sm={5} md={4} key={item.id}>
-                  {/* <Badge color="secondary" badgeContent=" "> */}
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      height="100%"
-                      image={item.vehicle_image}
-                      // alt="green iguana"
-                    />
+              {/* <Stack> */}
+              <Grid container item spacing={2} justifyContent="center">
+                {currentVehicles.map((item) => (
+                  <Grid item xs={10} sm={5} md={4} key={item.id}>
+                    {/* <Badge color="secondary" badgeContent=" "> */}
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        height="100%"
+                        image={item.vehicle_image}
+                        loading="lazy"
+                        // alt="green iguana"
+                      />
 
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {item.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        ${item.actual_price.toLocaleString()}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      {/* <Button size="small">Share</Button> */}
-                      {item.stock > 1 ? (
-                        <Button
-                          // size="small"
-                          variant="contained"
-                          color="success"
-                          startIcon={<GarageIcon />}
-                        >
-                          In Stock
-                        </Button>
-                      ) : (
-                        <Button
-                          // size="small"
-                          variant="outlined"
-                          color="error"
-                          startIcon={<CallIcon />}
-                        >
-                          Order
-                        </Button>
-                      )}
-                    </CardActions>
-                  </Card>
-                  {/* </Badge> */}
-                </Grid>
-              ))}
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {item.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          ${item.actual_price.toLocaleString()}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        {/* <Button size="small">Share</Button> */}
+                        {item.stock > 1 ? (
+                          <Button
+                            // size="small"
+                            variant="contained"
+                            color="success"
+                            startIcon={<GarageIcon />}
+                          >
+                            In Stock
+                          </Button>
+                        ) : (
+                          <Button
+                            // size="small"
+                            variant="outlined"
+                            color="error"
+                            startIcon={<CallIcon />}
+                          >
+                            Order
+                          </Button>
+                        )}
+                      </CardActions>
+                    </Card>
+                    {/* </Badge> */}
+                  </Grid>
+                ))}
+              </Grid>
+              <Grid
+                // container
+                p={2}
+                item
+                alignContent="center"
+                justifyContent="center"
+              >
+                <Pagination
+                  onChange={(e, page) => {
+                    // console.log(e.target.textContent);
+                    setCurrentPage(page);
+                  }}
+                  count={Math.ceil(filteredVehicles.length / vehiclesPerPage)}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </ThemeProvider>
