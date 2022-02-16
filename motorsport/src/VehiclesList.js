@@ -325,7 +325,7 @@ function VehiclesList() {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        {item.stock > 1 ? (
+                        {item.stock >= 1 ? (
                           <Button
                             // size="small"
                             variant="contained"
