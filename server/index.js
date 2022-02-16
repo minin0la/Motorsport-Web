@@ -11,6 +11,8 @@ const port = process.env.PORT || 9000;
 // });
 
 var connection;
+var cron = require("node-cron");
+var axios = require("axios");
 
 function handleDisconnect() {
   connection = mysql.createConnection({
@@ -66,10 +68,14 @@ app.get("/mysql", (req, res) => {
   );
 });
 
-app.get("/getstocks", (req, res) => {
-  var axios = require("axios");
+
+
+cron.schedule("* * * * *", () => {
   var data = `{"username":"${process.env.ECRP_USER}","password":"${process.env.ECRP_PASSWORD}"}`;
   var token = "";
+  var stocks;
+  var counter = 0;
+  console.log("Begin Updating stocks")
   // res.send(data);
 
   var config = {
@@ -91,7 +97,7 @@ app.get("/getstocks", (req, res) => {
   axios(config)
     .then(function (response) {
       token = response.data.token;
-      console.log(token);
+      // console.log(token);
       var config = {
         method: "get",
         url: "https://api.eclipse-rp.net/basic/vehicledealerships",
@@ -108,8 +114,27 @@ app.get("/getstocks", (req, res) => {
       };
       axios(config)
         .then(function (response) {
-          res.send(JSON.stringify(response.data.dealerships[2].VehicleStocks));
+          stocks = response.data.dealerships[2].VehicleStocks.map((doc) => ({
+            ...doc.v,
+          }));
+
+          if (stocks.length != 0) {
+            stocks.map((stock) => {
+              connection.query(
+                `UPDATE heroku_894cd5ce4010198.vehicles SET stock = ${stock.Stock}, store_price = ${stock.Price} WHERE (hash = ${stock.Vehicle})`,
+                function (err, result, fields) {
+                  if (err) throw err;
+
+                  counter = counter + 1;
+                  console.log(`Updating ${stock.Name}`);
+                  console.log(counter + " record(s) updated");
+  
+                }
+              );
+            });
+          }
         })
+
         .catch(function (error) {
           console.log(error);
         });

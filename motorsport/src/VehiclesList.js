@@ -22,6 +22,7 @@ import {
   Stack,
   Pagination,
   InputAdornment,
+  useMediaQuery,
 } from "@mui/material";
 import * as React from "react";
 import { db } from "./firebase-config";
@@ -48,6 +49,7 @@ function VehiclesList() {
       mode: "dark",
     },
   });
+  const mobileMatch = useMediaQuery(darkTheme.breakpoints.up("md"));
 
   useEffect(() => {
     const getVehicles = async () => {
@@ -161,7 +163,7 @@ function VehiclesList() {
               md={3}
               spacing={2}
               direction="column"
-              // justifyContent="center"
+              alignContent="center"
             >
               <Grid item>
                 <TextField
@@ -182,115 +184,113 @@ function VehiclesList() {
                 />
               </Grid>
               <Grid item>
-                <FormControl
+                {/* <FormControl
                   // sx={{ m: 3 }}
                   component="fieldset"
                   variant="standard"
-                >
-                  <Accordion
-                    sx={{ defaultExpanded: { xs: "true", md: "false" } }}
+                > */}
+                <Accordion defaultExpanded={mobileMatch}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
                   >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography>Filters</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <FormLabel component="legend">Filter</FormLabel>
-                      <FormGroup>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked={sports}
-                              onChange={handleChange}
-                              name="sports"
-                              value="SPORTS"
-                            />
-                          }
-                          label="Sports"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              onChange={handleChange}
-                              name="SUVs"
-                              value="SUVS"
-                            />
-                          }
-                          label="SUVs"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              onChange={handleChange}
-                              name="Off Road"
-                              value="OFF_ROAD"
-                            />
-                          }
-                          label="Off Road"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked={SUV}
-                              onChange={handleChange}
-                              name="Motorcycle"
-                              value="MOTORCYCLES"
-                            />
-                          }
-                          label="Motorcycle"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked={SUV}
-                              onChange={handleChange}
-                              name="Muscle"
-                              value="MUSCLE"
-                            />
-                          }
-                          label="Muscle"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked={SUV}
-                              onChange={handleChange}
-                              name="Sports (Classic)"
-                              value="SPORTS_CLASSIC"
-                            />
-                          }
-                          label="Sports (Classic)"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked={SUV}
-                              onChange={handleChange}
-                              name="Sedans"
-                              value="SEDANS"
-                            />
-                          }
-                          label="Sedans"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked={SUV}
-                              onChange={handleChange}
-                              name="Compacts"
-                              value="COMPACTS"
-                            />
-                          }
-                          label="Compacts"
-                        />
-                      </FormGroup>
-                      {/* <FormHelperText>Be careful</FormHelperText> */}
-                    </AccordionDetails>
-                  </Accordion>
-                </FormControl>
+                    <Typography>Filters</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    {/* <FormLabel component="legend">Filter</FormLabel> */}
+                    <FormGroup>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            // checked={sports}
+                            onChange={handleChange}
+                            name="sports"
+                            value="SPORTS"
+                          />
+                        }
+                        label="Sports"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={handleChange}
+                            name="SUVs"
+                            value="SUVS"
+                          />
+                        }
+                        label="SUVs"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={handleChange}
+                            name="Off Road"
+                            value="OFF_ROAD"
+                          />
+                        }
+                        label="Off Road"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            // checked={SUV}
+                            onChange={handleChange}
+                            name="Motorcycle"
+                            value="MOTORCYCLES"
+                          />
+                        }
+                        label="Motorcycle"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            // checked={SUV}
+                            onChange={handleChange}
+                            name="Muscle"
+                            value="MUSCLE"
+                          />
+                        }
+                        label="Muscle"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            // checked={SUV}
+                            onChange={handleChange}
+                            name="Sports (Classic)"
+                            value="SPORTS_CLASSIC"
+                          />
+                        }
+                        label="Sports (Classic)"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            // checked={SUV}
+                            onChange={handleChange}
+                            name="Sedans"
+                            value="SEDANS"
+                          />
+                        }
+                        label="Sedans"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            // checked={SUV}
+                            onChange={handleChange}
+                            name="Compacts"
+                            value="COMPACTS"
+                          />
+                        }
+                        label="Compacts"
+                      />
+                    </FormGroup>
+                    {/* <FormHelperText>Be careful</FormHelperText> */}
+                  </AccordionDetails>
+                </Accordion>
+                {/* </FormControl> */}
               </Grid>
             </Grid>
             <Grid
@@ -308,14 +308,12 @@ function VehiclesList() {
               <Grid container item spacing={2} justifyContent="center">
                 {currentVehicles.map((item) => (
                   <Grid item xs={10} sm={5} md={4} key={item.id}>
-                    {/* <Badge color="secondary" badgeContent=" "> */}
                     <Card>
                       <CardMedia
                         component="img"
                         height="100%"
                         image={item.vehicle_image}
                         loading="lazy"
-                        // alt="green iguana"
                       />
 
                       <CardContent>
@@ -327,7 +325,6 @@ function VehiclesList() {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        {/* <Button size="small">Share</Button> */}
                         {item.stock > 1 ? (
                           <Button
                             // size="small"
@@ -349,7 +346,6 @@ function VehiclesList() {
                         )}
                       </CardActions>
                     </Card>
-                    {/* </Badge> */}
                   </Grid>
                 ))}
               </Grid>
