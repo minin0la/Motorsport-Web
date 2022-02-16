@@ -21,6 +21,7 @@ import {
   AccordionDetails,
   Stack,
   Pagination,
+  InputAdornment,
 } from "@mui/material";
 import * as React from "react";
 import { db } from "./firebase-config";
@@ -31,6 +32,7 @@ import LoadingPage from "./LoadingPage";
 import GarageIcon from "@mui/icons-material/Garage";
 import CallIcon from "@mui/icons-material/Call";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import SearchIcon from "@mui/icons-material/Search";
 
 function VehiclesList() {
   const [loading, setLoading] = useState(true);
@@ -157,18 +159,26 @@ function VehiclesList() {
               item
               xs={12}
               md={3}
-              spacing={4}
+              spacing={2}
               direction="column"
               // justifyContent="center"
             >
               <Grid item>
                 <TextField
                   id="standard-basic"
-                  label="Search (Enter)"
-                  variant="standard"
+                  label="Search"
+                  variant="outlined"
                   // value={query}
                   // onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={handleSearch}
+                  // placeholder="Search Vehicles"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item>
