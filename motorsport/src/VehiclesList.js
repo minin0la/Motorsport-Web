@@ -16,6 +16,9 @@ import {
   Container,
   CardActions,
   Button,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
 import * as React from "react";
 import { db } from "./firebase-config";
@@ -25,10 +28,11 @@ import LoadingPage from "./LoadingPage";
 // import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import GarageIcon from "@mui/icons-material/Garage";
 import CallIcon from "@mui/icons-material/Call";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function VehiclesList() {
   const [loading, setLoading] = useState(true);
-  const [rawVehicles, setRawVehicles] = useState()
+  const [rawVehicles, setRawVehicles] = useState();
   const [vehicles, setVehicles] = useState([]);
   const vehiclesCollectionRef = collection(db, "vehicles");
   const [filteredVehicles, setFilteredVehicles] = useState([]);
@@ -67,7 +71,6 @@ function VehiclesList() {
   const [state, setState] = React.useState([]);
   const [searchText, setSearchText] = React.useState("");
   const [query, setQuery] = useState("");
-
 
   const handleSearch = (event) => {
     // if (event.target.value.length === 0) {
@@ -148,113 +151,136 @@ function VehiclesList() {
             spacing={4}
             sx={{ flexDirection: { xs: "column", md: "row" } }}
           >
-            <Grid container item xs={12} md={3} justifyContent="center">
-              <div>
+            <Grid
+              container
+              item
+              xs={12}
+              md={3}
+              spacing={4}
+              direction="column"
+              // justifyContent="center"
+            >
+              <Grid item>
+                <TextField
+                  id="standard-basic"
+                  label="Search (Enter)"
+                  variant="standard"
+                  // value={query}
+                  // onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={handleSearch}
+                />
+              </Grid>
+              <Grid item>
                 <FormControl
-                  sx={{ m: 3 }}
+                  // sx={{ m: 3 }}
                   component="fieldset"
                   variant="standard"
                 >
-                  <TextField
-                    id="standard-basic"
-                    label="Search (Enter)"
-                    variant="standard"
-                    // value={query}
-                    // onChange={(event) => setQuery(event.target.value)}
-                    onKeyDown={handleSearch}
-                  />
-                  <FormLabel component="legend">Filter</FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          // checked={sports}
-                          onChange={handleChange}
-                          name="sports"
-                          value="SPORTS"
+                  <Accordion
+                    sx={{ defaultExpanded: { xs: "true", md: "false" } }}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography>Filters</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <FormLabel component="legend">Filter</FormLabel>
+                      <FormGroup>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked={sports}
+                              onChange={handleChange}
+                              name="sports"
+                              value="SPORTS"
+                            />
+                          }
+                          label="Sports"
                         />
-                      }
-                      label="Sports"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          onChange={handleChange}
-                          name="SUVs"
-                          value="SUVS"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              onChange={handleChange}
+                              name="SUVs"
+                              value="SUVS"
+                            />
+                          }
+                          label="SUVs"
                         />
-                      }
-                      label="SUVs"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          onChange={handleChange}
-                          name="Off Road"
-                          value="OFF_ROAD"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              onChange={handleChange}
+                              name="Off Road"
+                              value="OFF_ROAD"
+                            />
+                          }
+                          label="Off Road"
                         />
-                      }
-                      label="Off Road"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          // checked={SUV}
-                          onChange={handleChange}
-                          name="Motorcycle"
-                          value="MOTORCYCLES"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked={SUV}
+                              onChange={handleChange}
+                              name="Motorcycle"
+                              value="MOTORCYCLES"
+                            />
+                          }
+                          label="Motorcycle"
                         />
-                      }
-                      label="Motorcycle"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          // checked={SUV}
-                          onChange={handleChange}
-                          name="Muscle"
-                          value="MUSCLE"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked={SUV}
+                              onChange={handleChange}
+                              name="Muscle"
+                              value="MUSCLE"
+                            />
+                          }
+                          label="Muscle"
                         />
-                      }
-                      label="Muscle"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          // checked={SUV}
-                          onChange={handleChange}
-                          name="Sports (Classic)"
-                          value="SPORTS_CLASSIC"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked={SUV}
+                              onChange={handleChange}
+                              name="Sports (Classic)"
+                              value="SPORTS_CLASSIC"
+                            />
+                          }
+                          label="Sports (Classic)"
                         />
-                      }
-                      label="Sports (Classic)"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          // checked={SUV}
-                          onChange={handleChange}
-                          name="Sedans"
-                          value="SEDANS"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked={SUV}
+                              onChange={handleChange}
+                              name="Sedans"
+                              value="SEDANS"
+                            />
+                          }
+                          label="Sedans"
                         />
-                      }
-                      label="Sedans"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          // checked={SUV}
-                          onChange={handleChange}
-                          name="Compacts"
-                          value="COMPACTS"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked={SUV}
+                              onChange={handleChange}
+                              name="Compacts"
+                              value="COMPACTS"
+                            />
+                          }
+                          label="Compacts"
                         />
-                      }
-                      label="Compacts"
-                    />
-                  </FormGroup>
-                  {/* <FormHelperText>Be careful</FormHelperText> */}
+                      </FormGroup>
+                      {/* <FormHelperText>Be careful</FormHelperText> */}
+                    </AccordionDetails>
+                  </Accordion>
                 </FormControl>
-              </div>
+              </Grid>
             </Grid>
 
             <Grid
