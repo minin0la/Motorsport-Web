@@ -23,7 +23,12 @@ import {
   Pagination,
   InputAdornment,
   useMediaQuery,
+  AppBar,
+  Toolbar,
+  IconButton,
+  createStyles,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { db } from "./firebase-config";
 import { collection } from "firebase/firestore";
@@ -34,6 +39,32 @@ import GarageIcon from "@mui/icons-material/Garage";
 import CallIcon from "@mui/icons-material/Call";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SearchIcon from "@mui/icons-material/Search";
+import { Box } from "@mui/system";
+import MenuIcon from "@mui/icons-material/Menu";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: darkTheme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+    textAlign: "center",
+  },
+  logo: {
+    maxHeight: 40,
+    marginTop: "12px",
+    marginRight: "10px",
+  },
+});
 
 function VehiclesList() {
   const [loading, setLoading] = useState(true);
@@ -44,11 +75,6 @@ function VehiclesList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [vehiclesPerPage, setvehiclesPerPage] = useState(6);
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
   const mobileMatch = useMediaQuery(darkTheme.breakpoints.up("md"));
 
   useEffect(() => {
@@ -137,24 +163,52 @@ function VehiclesList() {
       );
     }
   }, [state, searchText]);
-
+  const classes = useStyles();
   return (
     <>
       {loading === false ? (
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-          <Container
+          <div className={classes.root}>
+            <AppBar position="static">
+            <Toolbar classes={{root:classes.toolbar}}>
+            <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" className={classes.title}>
+                  <img
+                    src="https://i.imgur.com/TEq0FlR.png"
+                    alt="PDM"
+                    className={classes.logo}
+                  />
+                </Typography>
+               
+                
+                {/* {/* <Button color="inherit">Home</Button> */}
+                {/* <Button color="inherit">Pricing</Button>  */}
+              </Toolbar>
+            </AppBar>
+          </div>
+          {/* <Container
             disableGutters
             maxWidth="sm"
             component="main"
             sx={{ pt: 8, pb: 6 }}
           >
             <img src="https://i.imgur.com/TEq0FlR.png" />
-          </Container>
+          </Container> */}
+          {/* <Typography variant="h1" component="h2">
+  Price
+</Typography> */}
           <Grid
             container
             spacing={4}
-            sx={{ flexDirection: { xs: "column", md: "row" } }}
+            sx={{ flexDirection: { xs: "column", md: "row" } , pt: 6, pb: 6}}
           >
             <Grid
               container
