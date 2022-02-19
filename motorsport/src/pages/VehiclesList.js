@@ -12,23 +12,19 @@ import {
   ThemeProvider,
   CssBaseline,
   CardActions,
-  Button,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Pagination,
   InputAdornment,
   useMediaQuery,
-  AppBar,
-  Toolbar,
-  IconButton,
+  Divider,
+  Chip,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import LoadingPage from "../LoadingPage";
-import GarageIcon from "@mui/icons-material/Garage";
-import CallIcon from "@mui/icons-material/Call";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuAppBar from "./MenuAppBar";
@@ -107,6 +103,7 @@ function VehiclesList() {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     if (state.length === 0 && searchText.length === 0) {
       setFilteredVehicles(vehicles);
     } else if (searchText.length === 0 && state.length !== 0) {
@@ -189,6 +186,7 @@ function VehiclesList() {
                     <Typography>Filters</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
+                    <Divider textAlign="left">Class</Divider>
                     <FormGroup>
                       <FormControlLabel
                         control={
@@ -293,38 +291,31 @@ function VehiclesList() {
                         component="img"
                         height="100%"
                         image={item.vehicle_image}
-                        loading="lazy"
+                        // loading="lazy"
                       />
 
-                      <CardContent>
+                      <CardContent sx={{ mt: 1 }}>
                         <Typography gutterBottom variant="h5" component="div">
                           {item.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                           ${item.actual_price.toLocaleString()}
                         </Typography>
-                      </CardContent>
-                      <CardActions>
                         {item.stock >= 1 ? (
-                          <Button
-                            // size="small"
-                            variant="contained"
+                          <Chip
                             color="success"
-                            startIcon={<GarageIcon />}
-                          >
-                            In Stock
-                          </Button>
+                            label="In Stock"
+                            sx={{ mt: 2 }}
+                          />
                         ) : (
-                          <Button
-                            // size="small"
-                            variant="outlined"
+                          <Chip
                             color="error"
-                            startIcon={<CallIcon />}
-                          >
-                            Order
-                          </Button>
+                            label="Out Of Stock"
+                            sx={{ mt: 2 }}
+                          />
                         )}
-                      </CardActions>
+                      </CardContent>
+                      <CardActions></CardActions>
                     </Card>
                   </Grid>
                 ))}
@@ -337,6 +328,7 @@ function VehiclesList() {
                 justifyContent="center"
               >
                 <Pagination
+                  page={currentPage}
                   onChange={(e, page) => {
                     setCurrentPage(page);
                   }}
