@@ -4,7 +4,8 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import HomeIcon from "@mui/icons-material/Home";
+import TimeToLeaveIcon from "@mui/icons-material/TimeToLeave";
 import {
   AppBar,
   createTheme,
@@ -67,13 +68,13 @@ export default function MenuAppBar() {
       <List>
         <ListItemButton component="a" href="/">
           <ListItemIcon>
-            <InboxIcon />
+            <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItemButton>
         <ListItemButton component="a" href="/vehicles">
           <ListItemIcon>
-            <InboxIcon />
+            <TimeToLeaveIcon />
           </ListItemIcon>
           <ListItemText primary="Vehicles" />
         </ListItemButton>
