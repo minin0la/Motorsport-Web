@@ -57,7 +57,15 @@ function HomePage() {
                   component="h1"
                   className={classes.title}
                 >
-                  <img src="/logo/logo.png" width="40%" alt="" />
+                  <img
+                    src="/logo/logo.png"
+                    style={{
+                      minWidth: "300px",
+                      width: "1000px",
+                      maxWidth: "50%",
+                    }}
+                    alt=""
+                  />
                 </Typography>
                 <Button color="primary" variant="contained" href="/vehicles">
                   Click Me
