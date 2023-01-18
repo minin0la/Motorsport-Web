@@ -301,10 +301,7 @@ function VehiclesList() {
                           {item.veh_name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          $
-                          {item.recommended_price.toLocaleString({
-                            minimumFractionDigits: 1,
-                          })}
+                          ${parseInt(item.recommended_price).toLocaleString()}
                         </Typography>
                         {item.stock >= 1 ? (
                           <Chip
