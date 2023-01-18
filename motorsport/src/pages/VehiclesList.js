@@ -67,7 +67,9 @@ function VehiclesList() {
       const axios = require("axios");
 
       axios
-        .get("https://pdm-ecrp.herokuapp.com/mysql")
+        .get(
+          "https://eu-central-1.aws.data.mongodb-api.com/app/googlesheet-gfigm/endpoint/getVehicle"
+        )
         .then((res) => {
           setVehicles(res.data);
           setFilteredVehicles(res.data);
@@ -110,14 +112,14 @@ function VehiclesList() {
       setFilteredVehicles(
         vehicles.filter((vehicle) =>
           state.some((type) =>
-            [vehicle.type.toLowerCase()].flat().includes(type.toLowerCase())
+            [vehicle.class.toLowerCase()].flat().includes(type.toLowerCase())
           )
         )
       );
     } else if (searchText.length !== 0 && state.length === 0) {
       setFilteredVehicles(
         vehicles.filter((vehicle) =>
-          vehicle.name
+          vehicle.veh_name
             .toString()
             .toLowerCase()
             .includes(searchText.toLowerCase())
@@ -128,11 +130,11 @@ function VehiclesList() {
         vehicles
           .filter((vehicle) =>
             state.some((type) =>
-              [vehicle.type.toLowerCase()].flat().includes(type.toLowerCase())
+              [vehicle.class.toLowerCase()].flat().includes(type.toLowerCase())
             )
           )
           .filter((vehicle) =>
-            vehicle.name
+            vehicle.veh_name
               .toString()
               .toLowerCase()
               .includes(searchText.toLowerCase())
@@ -193,7 +195,7 @@ function VehiclesList() {
                           <Checkbox
                             onChange={handleChange}
                             name="sports"
-                            value="SPORTS"
+                            value="sport"
                           />
                         }
                         label="Sports"
@@ -202,8 +204,8 @@ function VehiclesList() {
                         control={
                           <Checkbox
                             onChange={handleChange}
-                            name="SUVs"
-                            value="SUVS"
+                            name="SUV"
+                            value="SUV"
                           />
                         }
                         label="SUVs"
@@ -213,7 +215,7 @@ function VehiclesList() {
                           <Checkbox
                             onChange={handleChange}
                             name="Off Road"
-                            value="OFF_ROAD"
+                            value="Off Road"
                           />
                         }
                         label="Off Road"
@@ -223,7 +225,7 @@ function VehiclesList() {
                           <Checkbox
                             onChange={handleChange}
                             name="Motorcycle"
-                            value="MOTORCYCLES"
+                            value="Motorcycle"
                           />
                         }
                         label="Motorcycle"
@@ -243,7 +245,7 @@ function VehiclesList() {
                           <Checkbox
                             onChange={handleChange}
                             name="Sports (Classic)"
-                            value="SPORTS_CLASSIC"
+                            value="Sport Classic"
                           />
                         }
                         label="Sports (Classic)"
@@ -253,7 +255,7 @@ function VehiclesList() {
                           <Checkbox
                             onChange={handleChange}
                             name="Sedans"
-                            value="SEDANS"
+                            value="Sedan"
                           />
                         }
                         label="Sedans"
@@ -263,7 +265,7 @@ function VehiclesList() {
                           <Checkbox
                             onChange={handleChange}
                             name="Compacts"
-                            value="COMPACTS"
+                            value="COMPACT"
                           />
                         }
                         label="Compacts"
@@ -290,16 +292,19 @@ function VehiclesList() {
                       <CardMedia
                         component="img"
                         height="100%"
-                        image={item.vehicle_image}
+                        image={item.veh_img}
                         // loading="lazy"
                       />
 
                       <CardContent sx={{ mt: 1 }}>
                         <Typography gutterBottom variant="h5" component="div">
-                          {item.name}
+                          {item.veh_name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          ${item.actual_price.toLocaleString()}
+                          $
+                          {item.recommended_price.toLocaleString({
+                            minimumFractionDigits: 1,
+                          })}
                         </Typography>
                         {item.stock >= 1 ? (
                           <Chip
